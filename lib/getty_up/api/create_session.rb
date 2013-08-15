@@ -1,5 +1,4 @@
 require 'getty_up/api/util'
-require 'rest_client'
 
 module GettyUp
   module API
@@ -22,18 +21,13 @@ module GettyUp
           }
         }
 
-        puts request
-        # response = post_json(request, ENDPOINT)
-        response = RestClient.post ENDPOINT, request.to_json, :content_type => :json, :accept => :json
+        response = post_json(request, ENDPOINT, true)
 
-        puts response
-        if response.code == '200'
-          @token = response[0]["CreateSessionResult"]["Token"]
-          @status = response[0]["ResponseHeader"]["Status"]
-          @secure_token = response[0]["CreateSessionResult"]["SecureToken"]
-          @token_duration = response[0]["CreateSessionResult"]["TokenDurationMinutes"]
-          @token_expiration = @token_duration.minutes.from_now
-        end
+        @token = response["CreateSessionResult"]["Token"]
+        @status = response["ResponseHeader"]["Status"]
+        @secure_token = response["CreateSessionResult"]["SecureToken"]
+        @token_duration = response["CreateSessionResult"]["TokenDurationMinutes"]
+        @token_expiration = @token_duration.minutes.from_now
       end
 
       def session_valid?
