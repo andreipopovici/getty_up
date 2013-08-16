@@ -21,7 +21,7 @@ module GettyUp
           }
         }
 
-        response = post_json(request, ENDPOINT, true)
+        response = post_json(request, ENDPOINT)
 
         @token = response["CreateSessionResult"]["Token"]
         @status = response["ResponseHeader"]["Status"]
