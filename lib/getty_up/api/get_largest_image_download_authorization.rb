@@ -5,7 +5,7 @@ module GettyUp
     module GetLargestImageDownloadAuthorization
       include GettyUp::API::Util
 
-      ENDPOINT = "http://connect.gettyimages.com/v1/download/GetLargestImageDownloadAuthorizations"
+      ENDPOINT = "https://connect.gettyimages.com/v1/download/GetLargestImageDownloadAuthorizations"
 
 
       def get_largest_image_download_authorization(token ,image_id)
