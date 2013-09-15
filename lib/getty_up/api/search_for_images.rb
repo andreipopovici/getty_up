@@ -22,10 +22,10 @@ module GettyUp
             },
           }.merge(options)
         }
-        response = post_json(request, ENDPOINT)
+        response = post_json(request, ENDPOINT, true)
 
         result = OpenStruct.new
-        result.response_header = response["ResponseHeader"]#.inject({}){|memo, hsh| memo.merge({hsh.first.underscore.to_sym => hsh.last})}
+        result.response_header = response["ResponseHeader"]
         result.images = response["SearchForImagesResult"]["Images"]
         result
 
